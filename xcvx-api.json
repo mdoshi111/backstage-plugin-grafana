@@ -1,0 +1,1092 @@
+{
+  "swagger" : "2.0",
+  "info" : { },
+  "basePath" : "/xcvs",
+  "tags" : [ {
+    "name" : "Call Feature APIs"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/deactivate/{tn}" : {
+      "delete" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Deactivate Feature API",
+        "description" : "",
+        "operationId" : "deactivateFeature",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "feature",
+          "in" : "query",
+          "description" : "Feature to be deactivated (Case-insensitive). For deactivate Feature API valid features : cfu/scf/acr & Deactivate RemoveTn API valid features : scf/scr/cfr",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "cfr/cfu/scf/acr/scr"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/DeactivateFeatureResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/deactivateremove/{tn}" : {
+      "delete" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Deactivate removeTn API",
+        "description" : "",
+        "operationId" : "deactivateRemoveTN",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "feature",
+          "in" : "query",
+          "description" : "Feature to be deactivated (Case-insensitive). For deactivate Feature API valid features : cfu/scf/acr & Deactivate RemoveTn API valid features : scf/scr/cfr",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "cfr/cfu/scf/acr/scr"
+        }, {
+          "name" : "removeTn",
+          "in" : "query",
+          "description" : "Number to be removed from feature",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/DeactivateRemoveTnResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/activatecfu/{tn}" : {
+      "put" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Activate Basic Call Forwarding API",
+        "description" : "",
+        "operationId" : "activateCFU",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "forwardTo",
+          "in" : "query",
+          "description" : "Forward To",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "numOfRings",
+          "in" : "query",
+          "description" : "Number Of Rings",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "5"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ActivateCfuResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/querycfu/{tn}" : {
+      "get" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Query Basic Call Forwarding API",
+        "description" : "",
+        "operationId" : "queryCFU",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/QueryCfuResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/activatecfr/{tn}" : {
+      "put" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Activate Call Forwarding Ring (Advanced Call Forwarding) API",
+        "description" : "",
+        "operationId" : "activateCFR",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "addTn",
+          "in" : "query",
+          "description" : "Add Tn",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "numOfRings",
+          "in" : "query",
+          "description" : "Number Of Rings",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "5"
+        }, {
+          "name" : "isStatusEnabled",
+          "in" : "query",
+          "description" : "Status enabled",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "true"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ActivateCfrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/querycfr/{tn}" : {
+      "get" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Query Call Forwarding Ring (Advanced Call Forwarding) API",
+        "description" : "",
+        "operationId" : "queryCFR",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/QueryCfrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/updatecfr/{tn}" : {
+      "put" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Update Call Forwarding Ring (Advanced Call Forwarding) API",
+        "description" : "",
+        "operationId" : "updateCFR",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "updateTn",
+          "in" : "query",
+          "description" : "Update Tn",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "numOfRings",
+          "in" : "query",
+          "description" : "Number Of Rings",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "5"
+        }, {
+          "name" : "isStatusEnabled",
+          "in" : "query",
+          "description" : "Status enabled",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "true"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateCfrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/activatescf/{tn}" : {
+      "put" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Activate Selective Call Forwarding API",
+        "description" : "",
+        "operationId" : "activateSCF",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "name" : "forwardTo",
+          "in" : "query",
+          "description" : "ForwardTo Tn",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141236"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Example: {\"tnList\":[{\"tn\": \"2152864481\"}]}",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ActivateScfResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/queryscf/{tn}" : {
+      "get" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Query Selective Call Forwarding API",
+        "description" : "",
+        "operationId" : "querySCF",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/QueryScfResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/activateacr/{tn}" : {
+      "put" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Activate Anonymous Call Rejection API",
+        "description" : "",
+        "operationId" : "activateACR",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ActivateAcrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/queryacr/{tn}" : {
+      "get" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Query Anonymous Call Rejection API",
+        "description" : "",
+        "operationId" : "queryACR",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/QueryAcrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/activatescr/{tn}" : {
+      "put" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Activate Selective Call Rejection API",
+        "description" : "",
+        "operationId" : "activateSCR",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Example: {\"tnList\":[{\"tn\": \"2152864481\"}]}",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/ActivateScrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/queryscr/{tn}" : {
+      "get" : {
+        "tags" : [ "Call Feature APIs" ],
+        "summary" : "Query Selective Call Rejection API",
+        "description" : "",
+        "operationId" : "querySCR",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tn",
+          "in" : "path",
+          "description" : "TelephoneNumber",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "2152141234"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/QueryScrResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "403" : {
+            "description" : "CodeBig Failure - Invalid Client Id",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/XcvsErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "DeactivateFeatureResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "ErrorMessage" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string",
+          "example" : "error",
+          "description" : "Response type"
+        },
+        "code" : {
+          "type" : "string",
+          "example" : "SPG-900001",
+          "description" : "Error code"
+        },
+        "message" : {
+          "type" : "string",
+          "example" : "Internal Service Error occurred, please try again.",
+          "description" : "Error message"
+        },
+        "server_code_message" : {
+          "type" : "string",
+          "example" : "10010505 : Execution of the ME command fails. The detail is: \" Result/ResultCode=900003060;\n Result/ResultDesc=SERVICE NOT DEFINED, External error. IMPU not defined.IMPU does not exist in CUDB.\n\".",
+          "description" : "Server error code & message"
+        }
+      }
+    },
+    "XcvsErrorResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        },
+        "messages" : {
+          "type" : "array",
+          "description" : "List of error messages",
+          "items" : {
+            "$ref" : "#/definitions/ErrorMessage"
+          }
+        }
+      }
+    },
+    "DeactivateRemoveTnResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "ActivateCfuResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "QueryCfuResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        },
+        "forwardTo" : {
+          "type" : "string",
+          "example" : "2242251234",
+          "description" : "Forward To Tn"
+        },
+        "numOfRings" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 6,
+          "description" : "Number of Rings"
+        }
+      }
+    },
+    "ActivateCfrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "QueryCfrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        },
+        "tnList" : {
+          "type" : "array",
+          "example" : "\"tnList\":[{\"tn\":\"8043688959\",\"isActive\":\"true\",\"type\":\"Home Phone\",\"numOfRings\":5}]",
+          "description" : "tnList",
+          "items" : {
+            "$ref" : "#/definitions/TelephoneNumberList"
+          }
+        }
+      }
+    },
+    "TelephoneNumberList" : {
+      "type" : "object",
+      "properties" : {
+        "tn" : {
+          "type" : "string"
+        },
+        "active" : {
+          "type" : "string"
+        },
+        "ringCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "forwardTo" : {
+          "type" : "string"
+        },
+        "idx" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "isActive" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "numOfRings" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "UpdateCfrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "ActivateScfResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "QueryScfResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        },
+        "forwardTo" : {
+          "type" : "string",
+          "example" : "6097275807",
+          "description" : "Forward To phoneNumber"
+        },
+        "tnList" : {
+          "type" : "array",
+          "example" : "\"tnList\":[{\"tn\":\"8384747555\",\"forwardTo\":\"tel:6097275807\"},{\"tn\":\"84398493894\",\"forwardTo\":\"tel:6097275807\"}]",
+          "description" : "tnList",
+          "items" : {
+            "$ref" : "#/definitions/TelephoneNumberList"
+          }
+        }
+      }
+    },
+    "ActivateAcrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "QueryAcrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        },
+        "isActive" : {
+          "type" : "string",
+          "example" : "true",
+          "description" : "Anonymous Call Rejection active flag",
+          "enum" : [ "true", "false" ]
+        }
+      }
+    },
+    "ActivateScrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        }
+      }
+    },
+    "QueryScrResponse" : {
+      "type" : "object",
+      "properties" : {
+        "hasErrors" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "Api response hasError flag",
+          "enum" : [ true, false ]
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 200,
+          "description" : "Api Response Status"
+        },
+        "resource" : {
+          "type" : "string",
+          "example" : "/xcvs/[queryscf|queryacr|queryscr|querycfr|querycfu|deactivate|deactivateremove|activatecfu|activatecfr|updatecfr|activatescf|activateacr|activatescr|]/2152141234",
+          "description" : "Api Path"
+        },
+        "tnList" : {
+          "type" : "array",
+          "example" : "\"tnList\":[{\"tn\":\"8384747555\"},{\"tn\":\"84398493894\"}]",
+          "description" : "tnList",
+          "items" : {
+            "$ref" : "#/definitions/TelephoneNumberList"
+          }
+        }
+      }
+    }
+  }
+}
